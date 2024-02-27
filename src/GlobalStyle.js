@@ -46,7 +46,7 @@ h4 {
 
 h1 {
   color: ${({ theme }) => theme.colors.heading};
-  font-size: 6rem;
+  font-size: 5rem;
   font-weight: 900;
 }
 
@@ -166,10 +166,6 @@ input[type="submit"] {
 
 .grid{
   gap: 3.2rem;
-}
-
-.grid-two-column , .grid-three-column, .grid-four-column {
-  grid-template-columns: 1fr;
 }
 
 `;
