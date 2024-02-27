@@ -9,11 +9,12 @@ import Cart from "./Cart";
 import ErrorPage from "./ErrorPage";
 import { GlobalStyle } from "./GlobalStyle";
 import { ThemeProvider } from "styled-components";
+import Header from "./components/Header";
 
 function App() {
   const theme = {
     colors: {
-      bg: "#fff",
+      bg: "#dbdfff",
     },
   }
 
@@ -21,6 +22,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <GlobalStyle />
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
