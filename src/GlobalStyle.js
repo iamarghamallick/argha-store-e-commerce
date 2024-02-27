@@ -151,7 +151,6 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-${""/*
 @media (max-width: ${({ theme }) => theme.media.tab}) {
   .container {
     max-width: 130rem;
@@ -164,7 +163,6 @@ ${""/*
    font-size: 50%;
  }
 }
-*/}
 
 .grid{
   gap: 3.2rem;
