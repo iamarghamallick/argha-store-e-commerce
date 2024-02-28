@@ -58,6 +58,7 @@ const Footer = () => {
                         </div>
                         <div className="footer-contact">
                             <h3 className="title-text">Call Us</h3>
+                            <h3 className="title-text">24 / 7 Customer Support</h3>
                             <h3>+91 12345678978</h3>
                         </div>
                     </div>
@@ -115,6 +116,13 @@ const Wrapper = styled.section`
                 }
             }
         }
+    }
+
+    .footer-contact,
+    .footer-social,
+    .footer-subscribe,
+    .footer-about {
+        padding: 2rem;
     }
 
     .footer-bottom-section {
