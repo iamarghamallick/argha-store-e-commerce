@@ -21,6 +21,22 @@ const ProductReducer = (state, action) => {
                 ...state,
                 isError: true,
             }
+        case "SET_SINGLE_LOADING":
+            return {
+                ...state,
+                singleLoading: true,
+            }
+        case "SET_SINGLE_PRODUCT":
+            return {
+                ...state,
+                singleLoading: false,
+                singleProduct: action.payload,
+            }
+        case "SET_SINGLE_ERROR":
+            return {
+                ...state,
+                isError: true,
+            }
         default:
             return state;
     }
