@@ -10,21 +10,21 @@ const Sort = () => {
     <Wrapper className="sort-section">
       {/* 1st column  */}
       <div className="sorting-list--grid">
-        <button
+        {!grid_view && <button
           className={grid_view ? "active sort-btn" : "sort-btn"}
           onClick={setGridView}>
           <BsFillGridFill className="icon" />
-        </button>
+        </button>}
 
-        <button
+        {grid_view && <button
           className={!grid_view ? "active sort-btn" : " sort-btn"}
           onClick={setListView}>
           <BsList className="icon" />
-        </button>
+        </button>}
       </div>
       {/* 2nd column  */}
       <div className="product-data">
-        <p>{`${filter_products.length} Product Available`}</p>
+        <p>{`${filter_products.length} Products Available`}</p>
       </div>
 
       {/* 3rd column  */}
@@ -37,10 +37,10 @@ const Sort = () => {
             className="sort-selection--style"
             onClick={sorting}>
             <option value="relevence">Relevence</option>
-            <option value="lowest">Price(lowest)</option>
-            <option value="highest">Price(highest)</option>
-            <option value="a-z">Alphabetic(A-Z)</option>
-            <option value="z-a">Alphabetic(Z-A)</option>
+            <option value="lowest">Price (Lowest)</option>
+            <option value="highest">Price (Highest)</option>
+            <option value="a-z">A to Z</option>
+            <option value="z-a">Z to A</option>
           </select>
         </form>
       </div>
@@ -51,6 +51,7 @@ const Sort = () => {
 const Wrapper = styled.section`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 5rem;
 
   .sorting-list--grid {
@@ -85,6 +86,14 @@ const Wrapper = styled.section`
       height: 2rem;
       padding: 10px;
     }
+  }
+
+  @media (max-width: ${({ theme }) => theme.media.mobile}) {
+    margin-top: 2rem;
+    .product-data p {
+      text-align: center;
+    }
+    
   }
 `;
 
