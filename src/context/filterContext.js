@@ -27,8 +27,8 @@ export const FilterContextProvider = ({ children }) => {
     };
 
     // to sort
-    const sorting = () => {
-        return dispatch({ type: "GET_SORT_VALUE" });
+    const sorting = (event) => {
+        return dispatch({ type: "GET_SORT_VALUE", payload: event.target.value });
     }
 
     useEffect(() => {
