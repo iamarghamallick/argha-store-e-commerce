@@ -3,9 +3,38 @@ const cartReducer = (state, action) => {
         let { id, color, amount, product } = action.payload;
         // console.log(product);
 
-        let cartProduct;
+        // tackle existing products
+        let existingProduct = state.cart.find((curr) => curr.id === id + color);
+        // console.log(existingProduct)
 
-        cartProduct = {
+        if (existingProduct) {
+            let updatedProduct = state.cart.map((curr) => {
+                if (curr.id === id + color) {
+                    let newAmount = curr.amount + amount;
+
+                    // handling quantity with stock
+                    if (newAmount >= curr.max) {
+                        newAmount = curr.max;
+                    }
+
+                    return {
+                        ...curr,
+                        amount: newAmount
+                    }
+                } else {
+                    return {
+                        ...curr,
+                    }
+                }
+            });
+
+            return {
+                ...state,
+                cart: updatedProduct,
+            }
+        }
+
+        let cartProduct = {
             id: id + color,
             name: product.name,
             color,
@@ -29,6 +58,13 @@ const cartReducer = (state, action) => {
         return {
             ...state,
             cart: updatedCart,
+        }
+    }
+
+    if (action.type === "CLEAR_CART") {
+        return {
+            ...state,
+            cart: [],
         }
     }
 

@@ -2,9 +2,12 @@ import React from 'react';
 import styled from "styled-components";
 import CartItem from './components/CartItem';
 import { useCartContext } from './context/cartContext';
+import { Button } from './styles/Button';
+import { NavLink } from 'react-router-dom';
+import FormatPrice from './helpers/FormatPrice';
 
 const Cart = () => {
-  const { cart } = useCartContext();
+  const { cart, clearCart, shippingFee, totalPrice } = useCartContext();
   // console.log(cart);
 
   return (
@@ -23,6 +26,39 @@ const Cart = () => {
           {cart.map((curr) => {
             return <CartItem key={curr.id} {...curr} />;
           })}
+        </div>
+        <hr />
+
+        <div className="cart-two-button">
+          <NavLink to="/products">
+            <Button>Continue Shopping</Button>
+          </NavLink>
+          <Button className="btn btn-clear" onClick={clearCart}>Clear Cart</Button>
+        </div>
+
+        {/* order total_amount */}
+        <div className="order-total-amount">
+          <div className="order-total-subdata">
+            <div>
+              <p>Sub-Total:</p>
+              <p>
+                <FormatPrice price={totalPrice} />
+              </p>
+            </div>
+            <div>
+              <p>Shipping fee:</p>
+              <p>
+                <FormatPrice price={shippingFee} />
+              </p>
+            </div>
+            <hr />
+            <div>
+              <p>order total:</p>
+              <p>
+                <FormatPrice price={shippingFee + totalPrice} />
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </Wrapper>
@@ -75,7 +111,6 @@ const Wrapper = styled.section`
     text-transform: capitalize;
   }
   .cart-image--name {
-    /* background-color: red; */
     align-items: center;
     display: grid;
     gap: 1rem;
@@ -139,7 +174,7 @@ const Wrapper = styled.section`
     cursor: pointer;
   }
 
-  .order-total--amount {
+  .order-total-amount {
     width: 100%;
     margin: 4.8rem 0;
     text-transform: capitalize;
@@ -148,7 +183,7 @@ const Wrapper = styled.section`
     justify-content: flex-end;
     align-items: flex-end;
 
-    .order-total--subdata {
+    .order-total-subdata {
       border: 0.1rem solid #f0f0f0;
       display: flex;
       flex-direction: column;
@@ -186,13 +221,13 @@ const Wrapper = styled.section`
       gap: 2.2rem;
     }
 
-    .order-total--amount {
+    .order-total-amount {
       width: 100%;
       text-transform: capitalize;
       justify-content: flex-start;
       align-items: flex-start;
 
-      .order-total--subdata {
+      .order-total-subdata {
         width: 100%;
         border: 0.1rem solid #f0f0f0;
         display: flex;
