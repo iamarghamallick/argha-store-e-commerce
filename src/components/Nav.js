@@ -1,11 +1,67 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { TiShoppingCart } from "react-icons/ti";
 import { CgMenu, CgClose } from "react-icons/cg";
+import { useCartContext } from '../context/cartContext';
 
 const Nav = () => {
-    const Nav = styled.nav`
+    const { cart } = useCartContext();
+    const [showMenuIcon, setShowMenuIcon] = useState(false);
+    const [totalCartItems, setTotalCartItems] = useState(0);
+
+    useEffect(() => {
+        let cartItems = 0;
+        cart.forEach(elem => {
+            cartItems += elem.amount;
+        });
+        setTotalCartItems(cartItems);
+    }, [cart])
+
+
+    return (
+        <Wrapper>
+            <div className={showMenuIcon ? "navbar active" : "navbar"}>
+                <ul className="navbar-lists">
+                    <li>
+                        <NavLink to={"/"} className="navbar-link" onClick={() => setShowMenuIcon(false)}>Home</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to={"/products"} className="navbar-link" onClick={() => setShowMenuIcon(false)}>Products</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to={"/about"} className="navbar-link" onClick={() => setShowMenuIcon(false)}>About</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to={"/contact"} className="navbar-link" onClick={() => setShowMenuIcon(false)}>Contact</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to={"/cart"} className="navbar-link cart-trolley-link" onClick={() => setShowMenuIcon(false)}>
+                            <TiShoppingCart className='cart-trolley' />
+                            <span className='cart-total-item'>{totalCartItems}</span>
+                        </NavLink>
+                    </li>
+                </ul>
+
+                {/* mobile navbar button  */}
+                <div className="mobile-navbar-btn">
+                    {!showMenuIcon && <CgMenu
+                        name="menu-outline"
+                        className="mobile-nav-icon"
+                        onClick={() => setShowMenuIcon(!showMenuIcon)}
+                    />}
+                    {showMenuIcon && <CgClose
+                        name="close-outline"
+                        className="mobile-nav-icon"
+                        onClick={() => setShowMenuIcon(!showMenuIcon)}
+                    />}
+                </div>
+            </div>
+        </Wrapper>
+    )
+}
+
+const Wrapper = styled.nav`
     .navbar-lists {
         display: flex;
         gap: 4.8rem;
@@ -142,49 +198,5 @@ const Nav = () => {
         }
     }
     `;
-
-    const [showMenuIcon, setShowMenuIcon] = useState(false);
-
-    return (
-        <Nav>
-            <div className={showMenuIcon ? "navbar active" : "navbar"}>
-                <ul className="navbar-lists">
-                    <li>
-                        <NavLink to={"/"} className="navbar-link" onClick={() => setShowMenuIcon(false)}>Home</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to={"/products"} className="navbar-link" onClick={() => setShowMenuIcon(false)}>Products</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to={"/about"} className="navbar-link" onClick={() => setShowMenuIcon(false)}>About</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to={"/contact"} className="navbar-link" onClick={() => setShowMenuIcon(false)}>Contact</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to={"/cart"} className="navbar-link cart-trolley-link" onClick={() => setShowMenuIcon(false)}>
-                            <TiShoppingCart className='cart-trolley' />
-                            <span className='cart-total-item'>10</span>
-                        </NavLink>
-                    </li>
-                </ul>
-
-                {/* mobile navbar button  */}
-                <div className="mobile-navbar-btn">
-                    {!showMenuIcon && <CgMenu
-                        name="menu-outline"
-                        className="mobile-nav-icon"
-                        onClick={() => setShowMenuIcon(!showMenuIcon)}
-                    />}
-                    {showMenuIcon && <CgClose
-                        name="close-outline"
-                        className="mobile-nav-icon"
-                        onClick={() => setShowMenuIcon(!showMenuIcon)}
-                    />}
-                </div>
-            </div>
-        </Nav>
-    )
-}
 
 export default Nav
