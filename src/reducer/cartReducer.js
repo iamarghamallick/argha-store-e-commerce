@@ -15,6 +15,8 @@ const cartReducer = (state, action) => {
             max: product.stock,
         }
 
+        localStorage.setItem('myCart', { cartProduct });
+
         return {
             ...state,
             cart: [...state.cart, cartProduct],
