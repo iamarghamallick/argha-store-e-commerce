@@ -4,9 +4,10 @@ import { useFilterContext } from '../context/filterContext';
 import { FaCheck } from "react-icons/fa";
 import FormatPrice from '../helpers/FormatPrice';
 import { IoFilter, IoSearch } from "react-icons/io5";
+import { Button } from '../styles/Button';
 
 const FilterSection = () => {
-  const { filters: { text, category, color, price, maxPrice, minPrice }, updateFilterValue, all_products } = useFilterContext();
+  const { filters: { text, category, color, price, maxPrice, minPrice }, updateFilterValue, all_products, clearFilters } = useFilterContext();
 
   // get the unique values of each property
   const getUniqueData = (data, attr) => {
@@ -130,6 +131,10 @@ const FilterSection = () => {
             value={price}
             onChange={updateFilterValue}
           />
+        </div>
+
+        <div className="filter-clear">
+          <Button onClick={clearFilters}>Clear Filters</Button>
         </div>
       </div>
     </Wrapper>
