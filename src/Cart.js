@@ -5,7 +5,8 @@ import { useCartContext } from './context/cartContext';
 
 const Cart = () => {
   const { cart } = useCartContext();
-  console.log(cart);
+  // console.log(cart);
+
   return (
     <Wrapper>
       <div className="container">
@@ -19,8 +20,8 @@ const Cart = () => {
         <hr />
 
         <div className="cart-item">
-          {cart.map((curElem) => {
-            return <CartItem key={curElem.id} {...curElem} />;
+          {cart.map((curr) => {
+            return <CartItem key={curr.id} {...curr} />;
           })}
         </div>
       </div>
