@@ -39,7 +39,7 @@ const CartItem = ({ id, name, image, color, price, amount }) => {
                 setIncrease={() => setIncrease(id)}
             />
 
-            {/* //Subtotal */}
+            {/* Subtotal */}
             <div className="cart-hide">
                 <p>
                     <FormatPrice price={price * amount} />

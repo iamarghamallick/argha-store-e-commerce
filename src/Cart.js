@@ -58,6 +58,9 @@ const Cart = () => {
                 <FormatPrice price={shippingFee + totalPrice} />
               </p>
             </div>
+            <Button>
+              <NavLink to="/checkout">Checkout</NavLink>
+            </Button>
           </div>
         </div>
       </div>
@@ -181,7 +184,7 @@ const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    align-items: flex-end;
+    align-items: center;
 
     .order-total-subdata {
       border: 0.1rem solid #f0f0f0;

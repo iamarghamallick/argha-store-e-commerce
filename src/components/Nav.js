@@ -1,23 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
-import styled from 'styled-components'
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 import { TiShoppingCart } from "react-icons/ti";
 import { CgMenu, CgClose } from "react-icons/cg";
 import { useCartContext } from '../context/cartContext';
 
 const Nav = () => {
-    const { cart } = useCartContext();
+    const { totalItem } = useCartContext();
     const [showMenuIcon, setShowMenuIcon] = useState(false);
-    const [totalCartItems, setTotalCartItems] = useState(0);
-
-    useEffect(() => {
-        let cartItems = 0;
-        cart.forEach(elem => {
-            cartItems += elem.amount;
-        });
-        setTotalCartItems(cartItems);
-    }, [cart])
-
 
     return (
         <Wrapper>
@@ -38,7 +28,7 @@ const Nav = () => {
                     <li>
                         <NavLink to={"/cart"} className="navbar-link cart-trolley-link" onClick={() => setShowMenuIcon(false)}>
                             <TiShoppingCart className='cart-trolley' />
-                            <span className='cart-total-item'>{totalCartItems}</span>
+                            <span className='cart-total-item'>{totalItem}</span>
                         </NavLink>
                     </li>
                 </ul>
