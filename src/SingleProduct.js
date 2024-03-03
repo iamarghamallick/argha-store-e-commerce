@@ -24,7 +24,7 @@ const SingleProduct = () => {
 
   useEffect(() => {
     getSingleProduct(`${API}/?id=${id}`);
-  }, [])
+  }, [getSingleProduct, id]);
 
   if (singleLoading) {
     return <div>.... loading</div>
