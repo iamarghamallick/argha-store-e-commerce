@@ -24,7 +24,8 @@ const SingleProduct = () => {
 
   useEffect(() => {
     getSingleProduct(`${API}/?id=${id}`);
-  }, [getSingleProduct, id]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (singleLoading) {
     return <div>.... loading</div>
