@@ -57,7 +57,7 @@ const FilterSection = () => {
                   value={curElem}
                   className={curElem === category ? "active" : ""}
                   onClick={updateFilterValue}>
-                  {curElem}
+                  {curElem[0].toUpperCase() + curElem.slice(1)}
                 </button>
               );
             })}
@@ -72,11 +72,11 @@ const FilterSection = () => {
               name="company"
               id="company"
               className="filter-company--select"
-              onClick={updateFilterValue}>
+              onChange={updateFilterValue}>
               {companyData.map((curElem, index) => {
                 return (
                   <option key={index} value={curElem} name="company">
-                    {curElem}
+                    {curElem[0].toUpperCase() + curElem.slice(1)}
                   </option>
                 );
               })}
@@ -98,7 +98,7 @@ const FilterSection = () => {
                     name="color"
                     className="color-all--style"
                     onClick={updateFilterValue}>
-                    all
+                    All
                   </button>
                 );
               }

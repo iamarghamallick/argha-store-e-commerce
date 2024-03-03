@@ -66,7 +66,7 @@ const Wrapper = styled.nav`
                 font-weight: 500;
                 text-transform: uppercase;
                 color: ${({ theme }) => theme.colors.black};
-                transition: color 0.3s linear;
+                transition: color 0.1s linear;
                 background-color: white;
                 padding: 6px;
                 border-radius: 8px;
@@ -151,7 +151,7 @@ const Wrapper = styled.nav`
             visibility: hidden;
             opacity: 0;
             transform: translateX(100%);
-            transition: all 3s linear;
+            transition: all 0.5s linear;
         }
 
         .active .navbar-lists {
@@ -160,7 +160,7 @@ const Wrapper = styled.nav`
             transform: translateX(0);
             z-index: 999;
             transform-origin: right;
-            transition: all 3s linear;
+            transition: all 0.5s linear;
 
             .navbar-link {
                 font-size: 4rem;
